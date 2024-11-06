@@ -1,6 +1,6 @@
 import requests
 
-def authorization(username:str, password:str) -> dict or None:
+def authorization(username:str, password:str) -> dict:
     url:str = 'http://localhost:8000/api/auth/login/'
     payload:dict = {'username': username, 'password': password}
     headers:dict = {'Content-Type': 'application/json'}
