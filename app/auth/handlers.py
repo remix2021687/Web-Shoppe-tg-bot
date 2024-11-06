@@ -38,7 +38,15 @@ async def set_password(message: Message, state: FSMContext):
 
     if login:
         await message.answer('You are now logged in!', reply_markup=keyboards.control_keyboard)
-        await collections.insert_one({
+
+        if collections.find_one({'tg_user_id': message.from_user.id}):
+            await collections.update_one({
+                "tg_user_id": message.from_user.id,
+                'tg_username': message.from_user.username,
+                'api_token': login
+            })
+        else:
+            await collections.insert_one({
             "tg_user_id": message.from_user.id,
             'tg_username': message.from_user.username,
             'api_token': login
