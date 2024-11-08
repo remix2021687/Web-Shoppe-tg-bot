@@ -8,3 +8,7 @@ control_keyboard = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text='Create Product'), KeyboardButton(text='Edit Product')],
     [KeyboardButton(text='Delete Product'), KeyboardButton(text='Product List')]
 ], resize_keyboard=True, input_field_placeholder='Select')
+
+cancel_keyboard = ReplyKeyboardMarkup(keyboard=[
+    [KeyboardButton(text='Cancel')],
+])

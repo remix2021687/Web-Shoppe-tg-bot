@@ -163,3 +163,5 @@ cython_debug/
 
 .idea
 config.py
+token_file.txt
+docker-compose.yaml
