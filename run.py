@@ -8,7 +8,7 @@ from aiogram.types import Message
 from dotenv import load_dotenv
 
 from app.auth.handlers import auth_router
-from app.admin.handlers import admin_router
+from app.admin.handlers.create_handlers import admin_router
 import app.keyboards.replay_keyboards as keyboards
 
 load_dotenv()

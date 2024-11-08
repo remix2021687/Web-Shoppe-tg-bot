@@ -16,6 +16,7 @@ client = AsyncIOMotorClient(os.getenv('MONGODB_URL'))
 db = client[f"{os.getenv('MONGODB_DB_NAME')}"]
 collections = db[f"{os.getenv('MONGODB_DB_COLLECTIONS')}"]
 
+
 @auth_router.message(F.text == 'Login')
 async def start_login(message: Message, state: FSMContext):
     await state.set_state(LoginForm.username)
@@ -39,14 +40,8 @@ async def set_password(message: Message, state: FSMContext):
     if login:
         await message.answer('You are now logged in!', reply_markup=keyboards.control_keyboard)
 
-        if collections.find_one({'tg_user_id': message.from_user.id}):
-            await collections.update_one({
-                "tg_user_id": message.from_user.id,
-                'tg_username': message.from_user.username,
-                'api_token': login
-            })
-        else:
-            await collections.insert_one({
+
+        await collections.insert_one({
             "tg_user_id": message.from_user.id,
             'tg_username': message.from_user.username,
             'api_token': login
